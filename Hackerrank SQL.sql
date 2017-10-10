@@ -12,5 +12,8 @@ ORDER BY event_id ASC, section ASC;
 SELECT * FROM dbo.events WHERE event_name LIKE '%Kansas City Royals%' AND invoice_id IS NOT NULL;
 ORDER BY event_id ASC, section ASC;
 
-/*Basic Select; USA cities with one parameter (population) */
+/*Basic Select; USA cities with one parameter (population)*/
 SELECT * FROM City WHERE countrycode = "USA" AND population > 100000;
+
+/*Binary Tree Nodes*/
+SELECT N, CASE WHEN P IS NULL THEN 'Root' WHEN (SELECT COUNT(*) FROM BST WHERE P=B.N)>0 THEN 'Inner' ELSE 'Leaf' END FROM BST AS B ORDER BY N;
