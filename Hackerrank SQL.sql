@@ -11,3 +11,6 @@ ORDER BY event_id ASC, section ASC;
 /*Same sales, but with sold seats*/
 SELECT * FROM dbo.events WHERE event_name LIKE '%Kansas City Royals%' AND invoice_id IS NOT NULL;
 ORDER BY event_id ASC, section ASC;
+
+/*Basic Select; USA cities with one parameter (population) */
+SELECT * FROM City WHERE countrycode = "USA" AND population > 100000;
