@@ -71,3 +71,7 @@ K,M = map(int,input().split())
 N = (list(map(int, input().split()))[1:] for _ in range(K))
 results = map(lambda x: sum(i**2 for i in x)%M, product(*N))
 print(max(results));
+
+#Write a function
+def is_leap(year):
+    return year % 4 == 0 and (year % 400 == 0 or year % 100 != 0);

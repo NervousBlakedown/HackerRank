@@ -20,5 +20,10 @@ SELECT N, CASE WHEN P IS NULL THEN 'Root' WHEN (SELECT COUNT(*) FROM BST WHERE P
 /*Advanced Select*/
 SELECT Company.Company_code, Company.founder, COUNT(DISTINCT Employee.Lead_Manager_code),
 COUNT(DISTINCT Employee.senior_manager_code), COUNT(DISTINCT Employee.manager_code),
-COUNT(DISTINCT Employee.employee_code) FROM Company INNER JOIN Employee ON Employee.Company_Code = Company.Company_Code, 
+COUNT(DISTINCT Employee.employee_code) FROM Company INNER JOIN Employee ON Employee.Company_Code = Company.Company_Code,
 GROUP BY Company.Company_Code, Company.founder ORDER BY Company.Company_code;
+
+/*Project conditions*/
+SELECT T1.Start_Date,T2.End_Date FROM ( SELECT Start_Date,ROW_NUMBER() OVER (ORDER BY Start_Date) RN FROM Projects WHERE Start_Date NOT IN (SELECT END_Date FROM Projects) ) AS T1 INNER JOIN (
+SELECT End_Date,ROW_NUMBER() OVER (ORDER BY End_Date) RN FROM Projects WHERE End_Date NOT IN (SELECT Start_Date FROM Projects)
+) AS T2 ON T1.RN = T2.RN ORDER BY DATEDIFF(Day,T1.Start_Date,T2.End_Date),T1.Start_Date;
