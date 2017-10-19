@@ -71,3 +71,24 @@ public class Solution {
 }
 
     };
+
+//Big Integer
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    BigInteger bigA = new BigInteger(in.nextLine());
+    BigInteger bigB = new BigInteger(in.nextLine());
+
+    System.out.println(bigA.add(bigB));
+    System.out.println(bigA.multiply(bigB));
+}
+
+
+}
