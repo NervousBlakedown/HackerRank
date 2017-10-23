@@ -75,3 +75,11 @@ print(max(results));
 #Write a function
 def is_leap(year):
     return year % 4 == 0 and (year % 400 == 0 or year % 100 != 0);
+
+#Nested list
+marksheet = []
+for _ in range(0,int(input())):
+    marksheet.append([input(), float(input())])
+
+second_highest = sorted(list(set([marks for name, marks in marksheet])))[1]
+print('\n'.join([a for a,b in sorted(marksheet) if b == second_highest]));
