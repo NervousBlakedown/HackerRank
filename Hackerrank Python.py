@@ -86,3 +86,10 @@ print('\n'.join([a for a,b in sorted(marksheet) if b == second_highest]));
 
 #Tuples
 print raw_input() == 0 or hash(tuple(map(int, raw_input().split(' '))));
+
+#Arithmetic Operators
+v = int(input())
+u = int(input())
+print(v + u)
+print(v-u)
+print(v*u);
