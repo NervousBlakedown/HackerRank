@@ -27,3 +27,34 @@ GROUP BY Company.Company_Code, Company.founder ORDER BY Company.Company_code;
 SELECT T1.Start_Date,T2.End_Date FROM ( SELECT Start_Date,ROW_NUMBER() OVER (ORDER BY Start_Date) RN FROM Projects WHERE Start_Date NOT IN (SELECT END_Date FROM Projects) ) AS T1 INNER JOIN (
 SELECT End_Date,ROW_NUMBER() OVER (ORDER BY End_Date) RN FROM Projects WHERE End_Date NOT IN (SELECT Start_Date FROM Projects)
 ) AS T2 ON T1.RN = T2.RN ORDER BY DATEDIFF(Day,T1.Start_Date,T2.End_Date),T1.Start_Date;
+
+/*Placements*/
+SELECT S.Name
+FROM Students S WITH (NOLOCK)
+INNER JOIN Friends F WITH (NOLOCK) ON S.ID = F.ID
+INNER JOIN Packages P WITH (NOLOCK) ON P.ID = S.ID
+INNER JOIN Packages PF WITH (NOLOCK) ON PF.ID = F.Friend_ID AND P.Salary < PF.Salary
+ORDER BY PF.Salary;
+
+/*Interviews*/
+SELECT h.contest_id, h.hacker_id, h.name, s.total_submissions, s.total_accepted_submissions, v.total_views, v.total_unique_views
+FROM Contests h
+JOIN
+(
+	SELECT h.hacker_id AS Id, SUM(vs.total_submissions) AS total_submissions, SUM(vs.total_accepted_submissions) AS total_accepted_submissions
+	FROM Contests h
+	JOIN Colleges con ON con.contest_id = h.contest_id
+	JOIN Challenges chg ON chg.college_id = con.college_id
+	LEFT JOIN Submission_Stats vs ON vs.challenge_id = chg.challenge_id
+	GROUP BY h.contest_id, h.hacker_id, h.name
+) AS s ON s.Id = h.hacker_id
+JOIN
+(
+    SELECT h.hacker_id AS Id, SUM(vs.total_views) AS total_views, SUM(vs.total_unique_views) AS total_unique_views
+    FROM Contests h
+    JOIN Colleges con ON con.contest_id = h.contest_id
+    JOIN Challenges chg ON chg.college_id = con.college_id
+    LEFT JOIN View_Stats vs ON vs.challenge_id = chg.challenge_id
+    GROUP BY h.contest_id, h.hacker_id, h.name
+) v ON v.Id = h.hacker_id
+WHERE s.total_submissions + s.total_accepted_submissions + v.total_views + v.total_unique_views > 0;
