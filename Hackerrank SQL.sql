@@ -58,3 +58,11 @@ JOIN
     GROUP BY h.contest_id, h.hacker_id, h.name
 ) v ON v.Id = h.hacker_id
 WHERE s.total_submissions + s.total_accepted_submissions + v.total_views + v.total_unique_views > 0;
+
+/*Draw a Triangle I*/
+DECLARE @i INT = 20
+WHILE (@i > 0)
+BEGIN
+   PRINT REPLICATE('* ', @i)
+   SET @i = @i - 1
+END;
