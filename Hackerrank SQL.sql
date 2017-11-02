@@ -66,3 +66,7 @@ BEGIN
    PRINT REPLICATE('* ', @i)
    SET @i = @i - 1
 END;
+
+/*Draw a Triangle II*/
+DECLARE @var SMALLINT = 1;
+WHILE @var < 21 BEGIN SELECT REPLICATE('* ', @var); SET @var += 1; END;
