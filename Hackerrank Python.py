@@ -108,7 +108,8 @@ if __name__ == '__main__':
     ls=[x for x in range(1,n+1)]
     print(*ls,sep='',end='\n',file=sys.stdout);
 
-#Validate email
+
+# Validate email
 def check_valid(email):
     try:
         username, url = email.split("@")
@@ -129,3 +130,9 @@ emails = [input() for email in range(n)]
 
 valid = list(filter(check_valid, emails))
 print(sorted(valid));
+
+
+# Detect Floating Point Number.
+import re
+for _ in range(input()):
+	print bool(re.match(r'^[-+]?[0-9]*\.[0-9]+$', raw_input()));
