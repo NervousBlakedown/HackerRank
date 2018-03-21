@@ -136,3 +136,8 @@ print(sorted(valid));
 import re
 for _ in range(input()):
 	print bool(re.match(r'^[-+]?[0-9]*\.[0-9]+$', raw_input()));
+
+# Designer door mat pattern.
+n, m = map(int,input().split())
+pattern = [('.|.'*(2*i + 1)).center(m, '-') for i in range(n//2)]
+print('\n'.join(pattern + ['WELCOME'.center(m, '-')] + pattern[::-1]));
