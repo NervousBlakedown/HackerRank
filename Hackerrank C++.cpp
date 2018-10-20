@@ -17,6 +17,7 @@ cout<<fixed<<e<<endl;
 return 0;
 }
 
+
 // Say "Hello, World!".
 #include <iostream>
 #include <cstdio>
@@ -26,6 +27,7 @@ int main() {
     printf("Hello, World!");
     return 0;
 }
+
 
 // Input and Output.
 #include <cmath>
@@ -46,6 +48,7 @@ cout<<sum;
     return 0;
 }
 
+
 // Conditional Statements.
 int main() {
 int in;
@@ -62,6 +65,7 @@ else{
 
 return 0;
 }
+
 
 // For Loop.
 #include <iostream>
@@ -81,4 +85,32 @@ int main() {
     return 0;
 }
 
+
 // Functions.
+#include <iostream>
+#include <cstdio>
+using namespace std;
+
+int max_of_four(int a, int b, int c, int d){
+    int ans;
+    if (a > b && a > c && a > d)
+        ans = a;
+    else if (b > c && b > d)
+        ans = b;
+    else if (c > d)
+        ans = c;
+    else
+        ans = d;
+    return ans;
+    }
+
+int main() {
+    int a, b, c, d;
+    scanf("%d %d %d %d", &a, &b, &c, &d);
+    int ans = max_of_four(a, b, c, d);
+    printf("%d", ans);
+
+    return 0;
+}
+
+// Pointer. (A way to share a memory address among different contexts.)
