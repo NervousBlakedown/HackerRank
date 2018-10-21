@@ -114,3 +114,41 @@ int main() {
 }
 
 // Pointer. (A way to share a memory address among different contexts.)
+#include <stdio.h>
+
+void update(int *a,int *b) {
+    int sum = *a + *b;
+    int absDifference = *a - *b > 0 ? *a - *b : -(*a - *b);
+    *a = sum;
+    *b = absDifference;
+
+}
+
+int main() {
+    int a, b;
+    int *pa = &a, *pb = &b;
+
+    scanf("%d %d", &a, &b);
+    update(pa, pb);
+    printf("%d\n%d", a, b);
+
+    return 0;
+}
+
+// Arrays Introduction.
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int N,i=0;
+    cin>>N;
+    int *A = new int[N];
+    while(std::cin>>A[i++]);
+    while(std::cout<<A[--N]<<' ' && N);
+    delete[] A;
+    return 0;
+} 
